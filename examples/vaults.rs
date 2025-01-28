@@ -23,6 +23,7 @@ fn load_secret() -> anyhow::Result<Vec<u8>> {
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
+    dotenvy::dotenv()?;
     let api_key = std::env::var("FIREBLOCKS_API_KEY")?;
     let secret = load_secret()?;
     let client = ClientBuilder::new(&api_key, &secret)
