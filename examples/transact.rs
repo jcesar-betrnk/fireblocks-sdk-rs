@@ -34,7 +34,23 @@ async fn main() -> anyhow::Result<()> {
         .build()?;
 
     let params = CreateTransactionParams{
-        transaction_request: models::TransactionRequest::default(),
+        transaction_request: models::TransactionRequest{
+            asset_id: Some("ETH_TEST5".to_string()),
+            operation: Some(models::TransactionOperation::Transfer),
+            source: Some(models::SourceTransferPeerPath{
+                r#type: models::TransferPeerPathType::VaultAccount,
+                id: Some("0".to_string()),
+                ..Default::default()
+            }),
+            destination: Some(models::DestinationTransferPeerPath{
+                r#type: models::TransferPeerPathType::VaultAccount,
+                id: Some("0".to_string()),
+                ..Default::default()
+            }),
+            amount: Some(models::TransactionRequestAmount::String("1.0".to_string())),
+            note: Some("Sample transaction from betrnk blockchain engr".to_string()),
+            ..Default::default()
+        },
         x_end_user_wallet_id: None,
         idempotency_key: None,
     };
