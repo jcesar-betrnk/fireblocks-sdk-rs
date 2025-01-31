@@ -158,6 +158,7 @@ impl Middleware for JwtSigningMiddleware {
             .query()
             .map_or_else(String::new, |q| format!("?{q}"));
         let path = format!("{}{}", req.url().path(), query);
+        dbg!(&path);
         let body_bytes = Self::buffer_and_get_body_bytes(&mut req);
         let jwt = self.signer.sign(&path, &body_bytes).map_err(|e| {
             anyhow::format_err!("failed to sign payload for path {path} error:'{e}'")
@@ -176,6 +177,8 @@ impl Middleware for JwtSigningMiddleware {
                 .parse()
                 .expect("could not create x-api-key header"),
         );
+
+        dbg!(&req);
 
         next.run(req, extensions).await
     }

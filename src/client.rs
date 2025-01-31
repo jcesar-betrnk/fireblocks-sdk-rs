@@ -132,6 +132,7 @@ impl Client {
             bearer_access_token: None,
             api_key: None,
         };
+        dbg!(&cfg);
         let api_client = Arc::new(ApiClient::new(Arc::new(cfg)));
         Self { api_client }
     }

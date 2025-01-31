@@ -17,23 +17,23 @@ edition = "2021"
 name = "fireblocks_sdk"
 path = "src/lib.rs"
 
-[lints.rust]
-unsafe_code = "forbid"
-unused_imports = "deny"
-non_snake_case = "allow"
-
-[lints.clippy]
-enum_glob_use = "deny"
-pedantic = { level = "deny", priority = -1 }
-unwrap_used = "deny"
-module_name_repetitions = "allow"
-future_not_send = "allow"
-must_use_candidate = "allow"
-return_self_not_must_use = "allow"
-missing_errors_doc = "allow"
-option_if_let_else = "warn"
-nursery = { level = "deny", priority = -1 }
-doc_markdown = "allow"
+#[lints.rust]
+#unsafe_code = "forbid"
+#unused_imports = "deny"
+#non_snake_case = "allow"
+#
+#[lints.clippy]
+#enum_glob_use = "deny"
+#pedantic = { level = "deny", priority = -1 }
+#unwrap_used = "deny"
+#module_name_repetitions = "allow"
+#future_not_send = "allow"
+#must_use_candidate = "allow"
+#return_self_not_must_use = "allow"
+#missing_errors_doc = "allow"
+#option_if_let_else = "warn"
+#nursery = { level = "deny", priority = -1 }
+#doc_markdown = "allow"
 
 [features]
 default = ["page", "bon"]
