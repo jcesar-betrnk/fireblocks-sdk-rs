@@ -1,12 +1,11 @@
 use {
     fireblocks_sdk::{
+        apis::vaults_api::{GetPagedVaultAccountsParams, GetVaultAccountParams},
         ClientBuilder,
         models,
     },
     std::{fs::File, io::Read, time::Duration},
 };
-use fireblocks_sdk::apis::transactions_api::CreateTransactionParams;
-use fireblocks_sdk::apis::transactions_api::GetTransactionParams;
 
 fn load_secret() -> anyhow::Result<Vec<u8>> {
     std::env::var("FIREBLOCKS_SECRET").ok().map_or_else(
@@ -34,12 +33,10 @@ async fn main() -> anyhow::Result<()> {
         .with_connect_timeout(Duration::from_secs(5))
         .build()?;
 
-    let params = GetTransactionParams{
-        //tx_id: "1f14cf18-44cd-4a7e-8486-3a9640bb18b5".to_string(),
-        tx_id: "5c588ce2-4b78-4257-88f7-f839153aaaf3".to_string(),
-    };
-    let response = client.transactions_api().get_transaction(params).await?;
+    //let response = client.create_asset("1", "USDT_ERC20").await?;
+    //let response = client.create_asset("0", "ETH_TEST5").await?;
+    //let response = client.create_asset("0", "USDT_BSC_TEST").await?;
+    let response = client.create_asset("1", "USDT_BSC_TEST").await?;
     dbg!(response);
-
     Ok(())
 }
